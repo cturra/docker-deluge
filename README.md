@@ -46,3 +46,19 @@ Content-Length: 2017
 Content-Type: text/html; charset=utf-8
 Server: TwistedWeb/13.2.0
 ```
+
+Update the GeoIP(v6) databases:
+---
+Deluge ships old version of the (free) GeoIP (v4 and v6) databases. If you'd like to update
+those, simple ensure your container name maches the `CONTAINER` variable at the top of the
+`update_geoip_db.sh` script and run it. When run, it will download both GeoIP databases from
+MaxMind and copy them into your Deluge Docker container.
+
+Here is an example run.
+
+```
+$ ./update_geoip_db.sh
+ => Downloading IPv4 GeoIP database... done!
+ => Downloading IPv6 GeoIP database... done!
+ => Extracting and copying databases into container... done!
+```
