@@ -1,15 +1,14 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 
 MAINTAINER cturra <cturra@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV DELUGE_VERSION  1.3.12-0~trusty~ppa1
+ENV DELUGE_VERSION  1.3.12-1ubuntu1
 
-RUN apt-get -qq update \
+RUN apt-get -q update \
  && apt-get -y install software-properties-common \
- && add-apt-repository ppa:deluge-team/ppa \
  && add-apt-repository "deb http://archive.ubuntu.com/ubuntu/ trusty-security multiverse" \
- && apt-get -qq update \
+ && apt-get -q update \
  && apt-get -y install supervisor \
                        deluged=${DELUGE_VERSION} \
                        deluge-web=${DELUGE_VERSION} \
