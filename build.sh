@@ -8,4 +8,4 @@ DOCKER=$(which docker)
 $DOCKER build -t ${IMAGE_NAME}:${BUILD_TAG} .
 
 # add latest tag
-$DOCKER tag --force ${IMAGE_NAME}:${BUILD_TAG} ${IMAGE_NAME}:latest
+$DOCKER tag ${IMAGE_NAME}:${BUILD_TAG} ${IMAGE_NAME}:latest
