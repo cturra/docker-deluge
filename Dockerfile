@@ -5,14 +5,12 @@ MAINTAINER cturra <cturra@gmail.com>
 ENV DEBIAN_FRONTEND noninteractive
 ENV DELUGE_VERSION  1.3.12-1ubuntu1
 
-RUN apt-get -q update \
- && apt-get -y install software-properties-common \
- && add-apt-repository "deb http://archive.ubuntu.com/ubuntu/ trusty-security multiverse" \
- && apt-get -q update \
- && apt-get -y install supervisor \
-                       deluged=${DELUGE_VERSION} \
+RUN echo "deb http://archive.ubuntu.com/ubuntu/ xenial multiverse" >> /etc/apt/sources.list \
+ && apt-get -q update                               \
+ && apt-get -y install supervisor                   \
+                       deluged=${DELUGE_VERSION}    \
                        deluge-web=${DELUGE_VERSION} \
-                       unrar \
+                       unrar                        \
  && rm -rf /var/lib/apt/lists/*
 
 # supervisor config
@@ -23,5 +21,5 @@ VOLUME ["/data"]
 # torrent port (tcp and udp)
 EXPOSE 53160/tcp 53160/udp 8112/tcp 58846/tcp
 
-# kick off supervisor+deluge
+# kick off deluge|web
 ENTRYPOINT [ "/usr/bin/supervisord" ]
