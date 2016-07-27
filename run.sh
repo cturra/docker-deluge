@@ -1,7 +1,7 @@
 #!/bin/bash
 
-IMAGE_NAME="cturra/deluge"
-CONTAINER_NAME="deluge"
+# grab global variables
+source vars
 
 DOCKER=$(which docker)
 
@@ -12,9 +12,16 @@ function check_container() {
 
 # function to start new docker container
 function start_container() {
-  $DOCKER run --name ${CONTAINER_NAME} --restart always -p 8112:8112/tcp -p 53160:53160 -p 58846:58846/tcp -d \
-    -v /data/deluge:/data -v /data/downloads:/data/downloads -v /data/dropbox/Dropbox/torrent/deluge:/data/torrents \
-    ${IMAGE_NAME}:latest > /dev/null
+  $DOCKER run --name=${CONTAINER_NAME}                                     \
+              --detach=true                                                \
+              --restart=always                                             \
+              --publish=8112:8112/tcp                                      \
+              --publish=53160:53160                                        \
+              --publish=58846:58846/tcp                                    \
+              --volume=/data/deluge:/data                                  \
+              --volume=/data/downloads:/data/downloads                     \
+              --volume=/data/dropbox/Dropbox/torrent/deluge:/data/torrents \
+              ${IMAGE_NAME}:latest > /dev/null
 }
 
 # check if docker container with same name is already running.
