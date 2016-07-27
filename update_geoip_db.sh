@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# name of deluge Docker container
-CONTAINER="deluge"
+# grab global variables
+source vars
 
 DOCKER=$(which docker)
 WGET=$(which wget)
@@ -18,8 +18,8 @@ echo "done!"
 
 echo -n " => Extracting and copying databases into container... "
 gunzip GeoIP.dat.gz GeoIPv6.dat.gz
-$DOCKER cp GeoIP.dat   $CONTAINER:/usr/share/GeoIP/GeoIP.dat > /dev/null 2>&1
-$DOCKER cp GeoIPv6.dat $CONTAINER:/usr/share/GeoIP/GeoIPv6.dat > /dev/null 2>&1
+$DOCKER cp GeoIP.dat   ${CONTAINER_NAME}:/usr/share/GeoIP/GeoIP.dat   > /dev/null 2>&1
+$DOCKER cp GeoIPv6.dat ${CONTAINER_NAME}:/usr/share/GeoIP/GeoIPv6.dat > /dev/null 2>&1
 echo "done!"
 
 # clean up local database files
