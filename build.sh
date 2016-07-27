@@ -1,7 +1,8 @@
 #!/bin/bash
 
-IMAGE_NAME="cturra/deluge"
-BUILD_TAG=$(date '+%m%d%Y%M')
+# grab global variables
+source vars
+
 DOCKER=$(which docker)
 
 # build image and tag with build tag (MonthDayYearMinute)
