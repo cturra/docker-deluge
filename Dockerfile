@@ -3,17 +3,19 @@ FROM ubuntu:16.04
 MAINTAINER cturra <cturra@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV DELUGE_VERSION  1.3.13-0~xenial~ppa1
+ENV DELUGE_VERSION  1.3.14-0~xenial~ppa1
 
 # setup and install deluge (key: 249AD24C) from ppa
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 249AD24C                                            \
  && echo "deb http://ppa.launchpad.net/deluge-team/ppa/ubuntu xenial main" > /etc/apt/sources.list.d/deluge.list \
- && echo "deb http://archive.ubuntu.com/ubuntu/ xenial multiverse" >> /etc/apt/sources.list                      \
+ && echo "deb http://archive.ubuntu.com/ubuntu/ xenial multiverse"        >> /etc/apt/sources.list               \
  && apt-get -q update                               \
  && apt-get -y install supervisor                   \
                        deluged=${DELUGE_VERSION}    \
                        deluge-web=${DELUGE_VERSION} \
+                       p7zip-full                   \
                        unrar                        \
+                       unzip                        \
  && rm -rf /var/lib/apt/lists/*
 
 # supervisor config
