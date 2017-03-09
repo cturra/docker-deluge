@@ -1,7 +1,5 @@
 FROM ubuntu:16.04
 
-MAINTAINER cturra <cturra@gmail.com>
-
 ENV DEBIAN_FRONTEND noninteractive
 ENV DELUGE_VERSION  1.3.14-0~xenial~ppa1
 
