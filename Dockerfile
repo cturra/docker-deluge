@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV DELUGE_VERSION  1.3.14-0~xenial~ppa1
+ENV DELUGE_VERSION  1.3.15-1~xenial~ppa3
 
 # setup and install deluge (key: 249AD24C) from ppa
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 249AD24C                                            \
